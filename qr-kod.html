@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Görev Takip Sistemi</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .task { margin-bottom: 10px; }
+        .task div { display: inline-block; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: left;">Görev Takip Sistemi</h1>
+    <div>
+        <input type="text" id="taskName" placeholder="Görev adı" readonly>
+        <input type="text" id="taskOwner" placeholder="Görev sahibi">
+        <button onclick="addTask()" disabled>Görev Ekle</button>
+    </div>
+    <div>
+        <input type="text" id="searchTask" placeholder="Görev ara" onkeyup="searchTask()">
+    </div>
+    <div id="taskList"></div>
+
+    <script>
+        // Sadece görev tanımlayıcı için okuma ve yazma modunu aktif hale getirme
+        function allowTaskDefinition() {
+            document.getElementById("taskName").readOnly = false;
+            document.querySelector("button").disabled = false;
+        }
+
+        function addTask() {
+            var taskName = document.getElementById("taskName").value;
+            var taskOwner = document.getElementById("taskOwner").value;
+            var taskDate = new Date().toLocaleDateString();
+            if (taskName && taskOwner) {
+                var taskList = document.getElementById("taskList");
+                var taskDiv = document.createElement("div");
+                taskDiv.className = "task";
+                taskDiv.innerHTML = '<div>' + taskName + '</div>' +
+                                    '<div>' + taskOwner + '</div>' +
+                                    '<div>' + taskDate + '</div>' +
+                                    '<button onclick="editTask(this)">Düzelt</button>' +
+                                    '<button onclick="removeTask(this)">Sil</button>';
+                taskList.appendChild(taskDiv);
+                document.getElementById("taskName").value = "";
+                document.getElementById("taskOwner").value = "";
+            }
+        }
+
+        function editTask(button) {
+            var taskDiv = button.parentElement;
+            var taskName = prompt("Görev adını düzenleyin:", taskDiv.children[0].textContent);
+            var taskOwner = prompt("Görev sahibini düzenleyin:", taskDiv.children[1].textContent);
+            if (taskName && taskOwner) {
+                taskDiv.children[0].textContent = taskName;
+                taskDiv.children[1].textContent = taskOwner;
+            }
+        }
+
+        function removeTask(button) {
+            var taskDiv = button.parentElement;
+            taskDiv.remove();
+        }
+
+        function searchTask() {
+            var input = document.getElementById("searchTask").value.toLowerCase();
+            var tasks = document.getElementById("taskList").getElementsByClassName("task");
+            for (var i = 0; i < tasks.length; i++) {
+                var taskName = tasks[i].children[0].textContent.toLowerCase();
+                var taskOwner = tasks[i].children[1].textContent.toLowerCase();
+                if (taskName.includes(input) || taskOwner.includes(input)) {
+                    tasks[i].style.display = "";
+                } else {
+                    tasks[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

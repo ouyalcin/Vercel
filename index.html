@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERCEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: white; /* Arka plan beyaz */
+            color: #282c34;
+            text-align: left;
+            padding: 20px;
+        }
+        .logo {
+            width: 150px; /* Logo boyutu */
+            float: left; /* Logoyu sola yerleştir */
+        }
+        nav {
+            margin: 20px 0;
+            clear: both; /* Logodan sonra nav'ı temizle */
+        }
+        nav a {
+            margin: 0 15px;
+            color: #61dafb;
+            text-decoration: none;
+        }
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .product {
+            width: 150px; /* Ürün kutusu boyutu */
+            height: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-direction: column; /* Resim ve metni dikey hizala */
+            position: relative; /* Hover için konumlandırma */
+            overflow: hidden; /* Taşma önleme */
+        }
+        .product img {
+            width: 100%; /* Görsel kutuya tam otursun */
+            height: 100%; /* Yükseklik ayarlandı */
+            object-fit: cover; /* Görselin orantılı kesilmesi */
+            transition: opacity 0.3s ease; /* Opaklık geçişi */
+        }
+        .product:hover img {
+            opacity: 0.3; /* Görselin opaklığı azalacak */
+        }
+        .product span {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            color: #000;
+            font-weight: bold;
+            opacity: 0; /* Başlangıçta görünmez */
+            transition: opacity 0.3s ease; /* Opaklık geçişi */
+        }
+        .product:hover span {
+            opacity: 1; /* Hover ile görünür hale gelir */
+        }
+        .contact {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .language-selector {
+            margin: 10px 0;
+        }
+        .whatsapp-logo {
+            width: 40px; /* WhatsApp logosunun boyutu */
+            height: 40px;
+            background-color: transparent; /* Arka plan rengi kaldırıldı */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="VERCEL.png" alt="VERCEL Logo" class="logo">
+    <h1>Welcome to VERCEL</h1>
+    <div class="language-selector">
+        <label for="language">Select Language:</label>
+        <select id="language" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+            <option value="ar">عربى</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+    <nav>
+        <a href="#products">Products</a>
+        <a href="#personalization">Personalization</a>
+        <a href="#about">About Us</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#payment">Payment Information</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section id="products">
+    <h2>Our Products</h2>
+    <div class="products">
+        <div class="product">
+            <img src="qr1.png" alt="QR Code">
+            <span class="product-name" data-en="QR CODE" data-tr="QR KOD" data-ar="رمز الاستجابة السريعة" data-fr="QR CODE">QR KOD</span>
+        </div>
+        <div class="product">
+            <img src="gorev.png" alt="Görev Takip">
+            <span class="product-name" data-en="Task Tracking" data-tr="GÖREV TAKİP" data-ar="متابعة المهام" data-fr="Suivi des tâches">GÖREV TAKİP</span>
+        </div>
+        <div class="product">
+            <img src="emlak1.png" alt="Emlak">
+            <span class="product-name" data-en="Real Estate" data-tr="EMLAK" data-ar="العقارات" data-fr="Immobilier">EMLAK</span>
+        </div>
+        <div class="product">
+            <img src="muhasebe.png" alt="Muhasebe">
+            <span class="product-name" data-en="Accounting" data-tr="MUHASEBE" data-ar="المحاسبة" data-fr="Comptabilité">MUHASEBE</span>
+        </div>
+        <div class="product">
+            <img src="stok.png" alt="Stok Takip">
+            <span class="product-name" data-en="Stock Tracking" data-tr="STOK TAKİP" data-ar="تتبع المخزون" data-fr="Suivi des stocks">STOK TAKİP</span>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>For inquiries, please email us: <a href="mailto:vercel@gmail.com">vercel@gmail.com</a></p>
+    <p>For WhatsApp inquiries, please click the logo: <a href="https://wa.me/905357239545"><img src="wp.png" alt="WhatsApp" class="whatsapp-logo" style="background-color: transparent;"></a></p>
+</section>
+
+<script>
+    function changeLanguage(language) {
+        const translations = {
+            en: {
+                title: 'Welcome to VERCEL',
+                productsTitle: 'Our Products',
+                contactTitle: 'Contact Us',
+                contactEmail: 'For inquiries, please email us: ',
+                contactWhatsApp: 'For WhatsApp inquiries, please click the logo: '
+            },
+            tr: {
+                title: 'VERCEL\'e Hoş Geldiniz',
+                productsTitle: 'Ürünlerimiz',
+                contactTitle: 'İletişim',
+                contactEmail: 'Sorularınız için e-posta gönderin: ',
+                contactWhatsApp: 'WhatsApp soruları için lütfen logoya tıklayın: '
+            },
+            ar: {
+                title: 'مرحبًا بكم في VERCEL',
+                productsTitle: 'منتجاتنا',
+                contactTitle: 'اتصل بنا',
+                contactEmail: 'للاستفسارات، يرجى إرسال بريد إلكتروني: ',
+                contactWhatsApp: 'للاستفسارات عبر WhatsApp، يرجى النقر فوق الشعار: '
+            },
+            fr: {
+                title: 'Bienvenue chez VERCEL',
+                productsTitle: 'Nos Produits',
+                contactTitle: 'Contactez-nous',
+                contactEmail: 'Pour toute demande, veuillez nous écrire : ',
+                contactWhatsApp: 'Pour les demandes WhatsApp, veuillez cliquer sur le logo : '
+            }
+        };
+
+        const selectedLang = translations[language];
+        document.querySelector('h1').innerText = selectedLang.title;
+        document.querySelector('#products h2').innerText = selectedLang.productsTitle;
+        document.querySelector('.contact h2').innerText = selectedLang.contactTitle;
+        document.querySelector('.contact p').innerText = selectedLang.contactEmail;
+        document.querySelector('.contact p + p').innerText = selectedLang.contactWhatsApp;
+
+        // Ürün isimlerini güncelle
+        const products = document.querySelectorAll('.product-name');
+        products.forEach(product => {
+            product.innerText = product.getAttribute(`data-${language}`);
+        });
+    }
+
+    // Her sayfaya bağlantı oluşturma
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Varsayılan davranışı önle
+            const sectionId = e.target.getAttribute('href').substring(1); // ID'yi al
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' }); // Sayfaya kaydır
+        });
+    });
+</script>
+
+</body>
+</html>
